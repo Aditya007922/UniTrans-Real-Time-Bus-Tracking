@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-green: #3DBE3D;
+  --bg-blue: #F8FAFC;
+  --text-main: #111827;
+  --text-gray: #6B7280;
+}
+
+@layer base {
+  body {
+    @apply antialiased scroll-smooth;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-blue);
+  }
+}
+
+/* Leaflet Overrides for Smooth Real-Time Feel */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+  background: var(--bg-blue) !important;
+}
+
+.custom-bus-marker, .landmark-marker, .custom-stop-marker {
+  transition: all 0.5s ease-out !important; /* Smooth but snappy */
+}
+
+/* Hide leaflet default controls/popups since we built custom HUD */
+.leaflet-control-zoom, .leaflet-control-attribution {
+  display: none !important;
+}
+
+.custom-popup .leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.custom-popup .leaflet-popup-tip {
+  display: none !important;
+}
+
+/* Animations */
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.pulse-green {
+  animation: ping-slow 2s infinite ease-out;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+/* Form Styles */
+input::placeholder {
+  @apply text-gray-400 font-bold tracking-widest;
+}
+
+/* Speech Bubble Specific Filter */
+.bubble-shadow {
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.12));
+}
